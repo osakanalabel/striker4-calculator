@@ -14,20 +14,25 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
-            padding: 20px;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 0 20px;
         }
 
         .container {
             width: 100%;
             max-width: 500px;
+            height: 80vh;
             background: #fff;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
         }
 
         h1 {
@@ -50,13 +55,16 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            align-items: center;
+            align-items: stretch;
+            flex: 1;
+            min-height: 0;
         }
 
         .left-panel {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            justify-content: center;
         }
 
         .right-panel {
@@ -84,6 +92,9 @@
             display: flex;
             justify-content: center;
             margin-top: 25px;
+            flex: 1;
+            min-height: 250px;
+            max-height: 400px;
         }
 
         .depth-display {
@@ -95,7 +106,7 @@
 
         .slider-wrapper {
             position: relative;
-            height: 300px;
+            height: 100%;
             display: flex;
             align-items: center;
         }
@@ -103,7 +114,7 @@
         .slider-track {
             position: absolute;
             width: 80px;
-            height: 300px;
+            height: 100%;
             background: linear-gradient(to bottom,
                 rgba(135, 206, 250, 0.3) 0%,
                 rgba(30, 144, 255, 0.5) 50%,
@@ -116,7 +127,7 @@
             -webkit-appearance: slider-vertical;
             appearance: slider-vertical;
             width: 80px;
-            height: 300px;
+            height: 100%;
             background: transparent;
             position: relative;
             z-index: 2;
@@ -226,6 +237,10 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 0 10px;
+            }
+
             .container {
                 padding: 12px 10px;
             }
@@ -260,13 +275,13 @@
             }
 
             .slider-wrapper {
-                height: 250px;
+                height: 100%;
             }
 
             .slider-track,
             input[type="range"] {
                 width: 60px;
-                height: 250px;
+                height: 100%;
             }
 
             .slider-track {
@@ -285,6 +300,8 @@
 
             .slider-container {
                 margin-top: 19px;
+                min-height: 200px;
+                max-height: 300px;
             }
 
             .result-card {
