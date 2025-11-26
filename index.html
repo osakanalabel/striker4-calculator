@@ -176,11 +176,30 @@
         }
 
         .result-card {
+            position: relative;
+            overflow: hidden;
             background: linear-gradient(135deg, #3a4db3 0%, #4d2a6b 100%);
             border-radius: 12px;
             padding: 24px;
             color: #fff;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, var(--overlay-opacity, 0));
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .result-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .result-card.wide {
@@ -453,6 +472,13 @@
             // 常に小数点第1位まで表示
             depthDisplay.textContent = depth.toFixed(1) + 'm';
             calculate(depth);
+
+            // 結果カードの背景を水深に応じて調整
+            // 浅い(1m): 0（明るい）、深い(20m): 0.4（暗い/濃い）
+            const overlayOpacity = (depth - 1) / 19 * 0.4;
+            document.querySelectorAll('.result-card').forEach(card => {
+                card.style.setProperty('--overlay-opacity', overlayOpacity);
+            });
         }
 
         function calculate(depth) {
