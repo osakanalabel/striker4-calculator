@@ -1,12 +1,16 @@
-# Garmin STRIKER4 照射範囲計算機
+# 氷上釣り向け Garmin STRIKER4 照射範囲計算機
 
-Garmin STRIKER4魚群探知機の照射範囲を計算するWebアプリ。水深を入力すると、湖底での照射範囲を瞬時に表示します。
+**氷上ワカサギ釣り** を想定した、Garmin STRIKER4魚群探知機の照射範囲を計算するWebアプリ。水深を入力すると、湖底での照射範囲を表示します。
 
 ## 公開URL
 
 https://osakanalabel.github.io/striker4-calculator/
 
 スマートフォンでアクセスして使用できます。
+
+https://osakanalabel.github.io/striker4-calculator/how-it-works.html
+
+魚探の仕組みと、この計算機が何をしているのかを解説したガイドも作りました。
 
 ## 機能
 
@@ -29,4 +33,8 @@ https://osakanalabel.github.io/striker4-calculator/
 
 ## ライセンス
 
-個人の学習・研究を目的としています。
+検討していません。個人の学習・研究を目的としています。
+
+## つぶやき
+
+HONDEX版の需要もあったりしますかね（私はSTRIKER4しかもっていないのですが）
