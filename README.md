@@ -1,6 +1,6 @@
 # Garmin STRIKER4 照射範囲計算機
 
-Garmin STRIKER4魚群探知機のエコー照射範囲を計算するWebアプリケーション。湖面に浮かべた魚群探知機から湖底への照射範囲を可視化します。
+Garmin STRIKER4魚群探知機の照射範囲を計算するWebアプリ。水深を入力すると、湖底での照射範囲を瞬時に表示します。
 
 ## 公開URL
 
@@ -10,48 +10,23 @@ https://osakanalabel.github.io/striker4-calculator/
 
 ## 機能
 
-- **水深選択**: 垂直スライダーで直感的に操作
-  - 範囲: 1m〜20m（0.5m刻み）
-  - 上が浅く、下が深い自然な配置
-  - マウスホイール対応（PC）
-  - 水をイメージした青のグラデーション背景
-  - 中央に細い縦線ガイド
-  - デフォルト値: 5m
-  - 小数点第1位まで表示
-  - クロスブラウザ対応（writing-mode実装）
+- 垂直スライダーで水深1〜20mを設定
+- 77kHz（広角45°）と200kHz（狭角15°）を同時計算
+- スマートフォンでの使用がメイン想定（PCにも対応）
 
-- **同時計算表示**:
-  - 77kHz（45度）広角照射
-  - 200kHz（15度）狭角照射
-  - 照射範囲円の直径を小数点第1位まで表示
-  - 水深に応じた動的背景効果（浅い:明るい、深い:暗い）
+## 技術スタック
 
-- **ビューポート対応レイアウト**:
-  - 画面高さの80%を使用した可変レイアウト
-  - スライダーと結果カードが画面サイズに追従
-  - 柔軟なレスポンシブ設計
-
-- **スマホファースト設計**:
-  - タッチ操作に最適化
-  - 画面サイズに応じた柔軟なレイアウト
-  - レスポンシブデザイン
-
-## 技術仕様
-
-- HTMLファイル構成:
-  - index.html: メイン計算機
-  - how-it-works.html: 仕組み解説ページ
-- 外部CDN・ライブラリ不使用
+- 単一HTMLファイル（ビルドツール不要）
+- Vanilla JavaScript
 - 完全オフライン動作
-- 外部サーバーとの通信なし
 
 詳細な仕様は [SPECIFICATION.md](SPECIFICATION.md) を参照してください。
 
-## リポジトリ情報
+## リポジトリ
 
-- **GitHubリポジトリ**: https://github.com/osakanalabel/striker4-calculator
-- **公開URL**: https://osakanalabel.github.io/striker4-calculator/
+- GitHub: https://github.com/osakanalabel/striker4-calculator
+- 公開URL: https://osakanalabel.github.io/striker4-calculator/
 
 ## ライセンス
 
-このプロジェクトは個人の学習・研究を目的としています。
+個人の学習・研究を目的としています。
