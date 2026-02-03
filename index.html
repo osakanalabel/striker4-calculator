@@ -76,16 +76,51 @@
 
         .depth-display-wrapper {
             display: flex;
-            align-items: baseline;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
             margin-bottom: 10px;
         }
 
         .depth-label {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: bold;
             color: #333;
+        }
+
+        .depth-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .depth-btn {
+            width: 32px;
+            height: 38px;
+            border: 2px solid #2a5298;
+            background: #fff;
+            color: #2a5298;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            user-select: none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .depth-btn:hover {
+            background: #2a5298;
+            color: #fff;
+        }
+
+        .depth-btn:active {
+            transform: scale(0.95);
         }
 
         .slider-container {
@@ -98,10 +133,11 @@
         }
 
         .depth-display {
-            font-size: 3rem;
+            font-size: 2.3rem;
             font-weight: bold;
             color: #1e3c72;
             min-width: 120px;
+            text-align: center;
         }
 
         .slider-wrapper {
@@ -325,7 +361,7 @@
             }
 
             .depth-display-wrapper {
-                gap: 5px;
+                gap: 3px;
                 margin-bottom: 5px;
             }
 
@@ -335,7 +371,13 @@
             }
 
             .depth-label {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+            }
+
+            .depth-btn {
+                width: 28px;
+                height: 32px;
+                font-size: 1.1rem;
             }
 
             .slider-wrapper {
@@ -440,7 +482,11 @@
             <div class="right-panel">
                 <div class="depth-display-wrapper">
                     <div class="depth-label">水深</div>
-                    <div class="depth-display" id="depthDisplay">5m</div>
+                    <div class="depth-controls">
+                        <button class="depth-btn" id="depthDecrement" aria-label="水深を0.1m浅くする">−</button>
+                        <div class="depth-display" id="depthDisplay">5m</div>
+                        <button class="depth-btn" id="depthIncrement" aria-label="水深を0.1m深くする">+</button>
+                    </div>
                 </div>
 
                 <div class="slider-container">
@@ -460,11 +506,31 @@
     <script>
         const slider = document.getElementById('depthSlider');
         const depthDisplay = document.getElementById('depthDisplay');
+        const depthIncrement = document.getElementById('depthIncrement');
+        const depthDecrement = document.getElementById('depthDecrement');
 
         // スライダーの変更イベント（値を反転: 上が浅く、下が深い）
         slider.addEventListener('input', function() {
             const depth = 21 - parseFloat(this.value); // 21-1=20m, 21-20=1m
             updateDepth(depth);
+        });
+
+        // +ボタン: 水深を0.1m増やす（深くする）
+        depthIncrement.addEventListener('click', function() {
+            let currentValue = parseFloat(slider.value);
+            currentValue = Math.max(1, currentValue - 0.1); // スライダー値を減らす = 水深を増やす
+            currentValue = Math.round(currentValue * 10) / 10;
+            slider.value = currentValue;
+            updateDepth(21 - currentValue);
+        });
+
+        // -ボタン: 水深を0.1m減らす（浅くする）
+        depthDecrement.addEventListener('click', function() {
+            let currentValue = parseFloat(slider.value);
+            currentValue = Math.min(20, currentValue + 0.1); // スライダー値を増やす = 水深を減らす
+            currentValue = Math.round(currentValue * 10) / 10;
+            slider.value = currentValue;
+            updateDepth(21 - currentValue);
         });
 
         // マウスホイールで水深変更（0.1m刻み）
