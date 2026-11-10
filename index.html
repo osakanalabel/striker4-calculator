@@ -246,6 +246,33 @@
             background: linear-gradient(135deg, #1a7cc9 0%, #00b0c5 100%);
         }
 
+        /* HONDEX TD07（参考表示。他カードより小さめ） */
+        .result-card.ref {
+            background: linear-gradient(135deg, #1e7f4c 0%, #4f7a0e 100%);
+            padding: 14px 24px;
+        }
+
+        .result-card.ref .frequency {
+            font-size: 0.95rem;
+        }
+
+        .result-card.ref .angle {
+            font-size: 0.7rem;
+        }
+
+        .result-card.ref .result-label {
+            font-size: 0.7rem;
+            margin-bottom: 2px;
+        }
+
+        .result-card.ref .result-value {
+            font-size: 1.6rem;
+        }
+
+        .result-card.ref .unit {
+            font-size: 1.1rem;
+        }
+
         .result-header {
             margin-bottom: 8px;
             text-align: center;
@@ -414,8 +441,24 @@
                 padding: 13px;
             }
 
+            .result-card.ref {
+                padding: 8px 13px;
+            }
+
+            .result-card.ref .frequency {
+                font-size: 0.8rem;
+            }
+
+            .result-card.ref .result-value {
+                font-size: 1.15rem;
+            }
+
+            .result-card.ref .unit {
+                font-size: 0.85rem;
+            }
+
             .results {
-                gap: 16px;
+                gap: 12px;
             }
 
             .result-value {
@@ -473,6 +516,17 @@
                         <div class="result-label">照射範囲円の直径</div>
                         <div class="result-value">
                             <span id="result200"></span><span class="unit">m</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card ref">
+                        <div class="result-header">
+                            <div class="frequency">HONDEX TD07（参考）</div>
+                            <div class="angle">200kHz 超狭角 9°</div>
+                        </div>
+                        <div class="result-label">照射範囲円の直径</div>
+                        <div class="result-value">
+                            <span id="resultTD07"></span><span class="unit">m</span>
                         </div>
                     </div>
                 </div>
@@ -579,9 +633,14 @@
             const angle200 = 15 * (Math.PI / 180);
             const diameter200 = 2 * depth * Math.tan(angle200 / 2);
 
+            // HONDEX TD07 (200kHz 9度) の計算（参考値）
+            const angleTD07 = 9 * (Math.PI / 180);
+            const diameterTD07 = 2 * depth * Math.tan(angleTD07 / 2);
+
             // 結果を表示（小数点第1位まで）
             document.getElementById('result77').textContent = diameter77.toFixed(1);
             document.getElementById('result200').textContent = diameter200.toFixed(1);
+            document.getElementById('resultTD07').textContent = diameterTD07.toFixed(1);
         }
 
         // 初期表示（5m）
