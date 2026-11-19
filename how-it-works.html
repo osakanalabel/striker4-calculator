@@ -169,7 +169,7 @@
 
         <h3>超音波ビームの広がり</h3>
         <p>
-            振動子から発射される超音波は、レーザーのように真っ直ぐ進むのではなく、<strong>円錐形（コーン状）に広がりながら進みます</strong>。この広がり方は、振動子の周波数によって決まります。
+            振動子から発射される超音波は、レーザーのように真っ直ぐ進むのではなく、<strong>円錐形（コーン状）に広がりながら進みます</strong>。どのくらい広がるか（照射角）は、振動子ごとに決まっています。
         </p>
 
         <div class="diagram">
@@ -185,15 +185,12 @@
                 <rect x="195" y="40" width="10" height="15" fill="#455a64" stroke="#263238" stroke-width="1"/>
                 <circle cx="200" cy="55" r="3" fill="#ff5722"/>
 
-                <!-- 超音波ビーム (77Hz - 45度) -->
-                <g opacity="0.3">
-                    <path d="M 200 55 L 100 280 L 300 280 Z" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
-                </g>
+                <!-- 超音波ビーム（イメージ） -->
+                <path d="M 200 55 L 100 280 L 300 280 Z" fill="#ff9800" fill-opacity="0.3" stroke="#f57c00" stroke-width="2"/>
 
-                <!-- 照射角の表示 -->
-                <path d="M 200 55 L 200 150" stroke="#1976d2" stroke-width="2" stroke-dasharray="5,3"/>
-                <path d="M 200 55 L 120 200" stroke="#1976d2" stroke-width="2" stroke-dasharray="5,3"/>
-                <text x="140" y="100" fill="#1976d2" font-size="14" font-weight="bold">45°</text>
+                <!-- 照射角（円錐の左右の縁がなす頂角） -->
+                <path d="M 179.7 100.7 A 50 50 0 0 0 220.3 100.7" fill="none" stroke="#1976d2" stroke-width="2"/>
+                <text x="200" y="128" fill="#1976d2" font-size="14" font-weight="bold" text-anchor="middle">照射角</text>
 
                 <!-- 水深の表示 -->
                 <line x1="320" y1="55" x2="320" y2="280" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead)"/>
@@ -206,31 +203,34 @@
                 <text x="10" y="300" fill="#fff" font-size="14" font-weight="bold">湖底</text>
 
                 <!-- 照射範囲の直径 -->
-                <line x1="100" y1="295" x2="300" y2="295" stroke="#e91e63" stroke-width="3" marker-start="url(#arrowhead2)" marker-end="url(#arrowhead2)"/>
+                <line x1="100" y1="295" x2="300" y2="295" stroke="#e91e63" stroke-width="3" marker-start="url(#arrowhead2-start)" marker-end="url(#arrowhead2)"/>
                 <text x="160" y="320" fill="#e91e63" font-size="16" font-weight="bold">照射範囲</text>
 
                 <!-- Arrow markers -->
                 <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
                         <polygon points="0 0, 10 5, 0 10" fill="#4caf50"/>
                     </marker>
-                    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
                         <polygon points="0 0, 10 5, 0 10" fill="#e91e63"/>
+                    </marker>
+                    <marker id="arrowhead2-start" markerWidth="10" markerHeight="10" refX="0" refY="5" orient="auto">
+                        <polygon points="10 0, 0 5, 10 10" fill="#e91e63"/>
                     </marker>
                 </defs>
             </svg>
             <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
-                77kHz（45度広角）の超音波ビームの広がり方
+                照射角・水深・照射範囲の関係
             </p>
         </div>
 
         <h2>照射角度の意味</h2>
         <p>
-            <strong>照射角度</strong>は、超音波ビームの円錐形の頂角を表します。Garmin STRIKER4では、2つの異なる周波数が使用されています：
+            <strong>照射角度</strong>は、超音波ビームの円錐形の頂角を表します。Garmin STRIKER4 には、照射角の異なる2つのビームがあります：
         </p>
         <ul>
-            <li><strong>77kHz（45度）</strong>：広角で広い範囲をカバー。魚群の発見に適している。</li>
-            <li><strong>200kHz（15度）</strong>：狭角で詳細な情報を取得。湖底の地形や小さな魚の識別に適している。</li>
+            <li><strong>77kHz（45度）</strong>：広角で広い範囲を映す。周りに魚がいるかを探すのに向いている。</li>
+            <li><strong>200kHz（15度）</strong>：狭角で真下の狭い範囲を映す。映った魚が真下近くにいると判断しやすく、湖底の起伏もつかみやすい。</li>
         </ul>
 
         <h2>なぜ水深で照射範囲が変わるのか</h2>
@@ -300,18 +300,18 @@
             <ul style="margin-top: 10px;">
                 <li>浅い場所では照射範囲が狭く、ピンポイントで探索できる</li>
                 <li>深い場所では照射範囲が広く、広範囲をカバーできる</li>
-                <li>77kHz（広角）は魚群の発見に有利だが、解像度は低い</li>
-                <li>200kHz（狭角）は詳細な地形把握に有利だが、範囲は狭い</li>
+                <li>77kHz（広角）は広い範囲から魚を探しやすい</li>
+                <li>200kHz（狭角）は真下の様子を絞り込んで見られる</li>
             </ul>
         </div>
 
-        <h2>周波数による違い</h2>
+        <h2>広角と狭角の違い</h2>
 
         <div class="diagram">
             <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                <!-- 77kHz -->
+                <!-- 広角 -->
                 <g>
-                    <text x="25" y="20" fill="#333" font-size="14" font-weight="bold">77kHz (45度)</text>
+                    <text x="75" y="20" fill="#333" font-size="14" font-weight="bold" text-anchor="middle">広角</text>
                     <rect x="65" y="30" width="20" height="10" fill="#8d6e63"/>
                     <circle cx="75" cy="45" r="2" fill="#ff5722"/>
                     <path d="M 75 45 L 20 220 L 130 220 Z" fill="#ff9800" opacity="0.3" stroke="#f57c00" stroke-width="2"/>
@@ -319,9 +319,9 @@
                     <text x="45" y="275" fill="#e91e63" font-size="14" font-weight="bold">広い範囲</text>
                 </g>
 
-                <!-- 200kHz -->
+                <!-- 狭角 -->
                 <g transform="translate(200, 0)">
-                    <text x="20" y="20" fill="#333" font-size="14" font-weight="bold">200kHz (15度)</text>
+                    <text x="75" y="20" fill="#333" font-size="14" font-weight="bold" text-anchor="middle">狭角</text>
                     <rect x="65" y="30" width="20" height="10" fill="#8d6e63"/>
                     <circle cx="75" cy="45" r="2" fill="#ff5722"/>
                     <path d="M 75 45 L 55 220 L 95 220 Z" fill="#00bcd4" opacity="0.3" stroke="#0097a7" stroke-width="2"/>
@@ -330,7 +330,7 @@
                 </g>
             </svg>
             <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
-                同じ水深でも周波数によって照射範囲が大きく異なる
+                同じ水深でも照射角によって照射範囲が大きく異なる
             </p>
         </div>
 
